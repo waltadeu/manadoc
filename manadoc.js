@@ -20,8 +20,8 @@ function seed() {
   const walter = { id: 'u_walter', name: 'walter Fernandes', email: 'pai@manadoc.com', password: '123456', familyId, createdAt: now }
   const peng = { id: 'u_peng', name: 'Peng Ren', email: 'mae@manadoc.com', password: '123456', familyId, createdAt: now }
   const sofia = { id: 'u_sofia', name: 'Sofia Ren Fernandes', email: 'filha@manadoc.com', password: '123456', familyId, createdAt: now }
-  const users = [walter, li, sofia]
-  const families = [{ id: familyId, name: 'Família Silva', code: 'SILVA-2025', createdBy: walter.id }]
+  const users = [walter, peng, sofia]
+  const families = [{ id: familyId, name: 'Família Ren Fernandes', code: 'CHBRPT-2025', createdBy: walter.id }]
 
   const d = (y,m,day)=> new Date(y,m-1,day).toISOString().slice(0,10)
   const documents = [
