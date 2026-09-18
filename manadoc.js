@@ -26,7 +26,7 @@ function seed() {
   const d = (y,m,day)=> new Date(y,m-1,day).toISOString().slice(0,10)
   const documents = [
     // walter
-    { id:'d1', ownerId:walter.id, familyId, type:'CPF', country:'Brasil', name:'CPF walter', issueDate:d(2005,3,10), expiryDate:'', photo:'', sharedWith:[png.id, sofia.id] },
+    { id:'d1', ownerId:walter.id, familyId, type:'CPF', country:'Brasil', name:'CPF walter', issueDate:d(2005,3,10), expiryDate:'', photo:'', sharedWith:[li.id, sofia.id] },
     { id:'d2', ownerId:walter.id, familyId, type:'RG', country:'Brasil', name:'RG walter', issueDate:d(2018,6,15), expiryDate:'', photo:'', sharedWith:[li.id] },
     { id:'d3', ownerId:walter.id, familyId, type:'Passaporte', country:'Brasil', name:'Passaporte BR walter', issueDate:d(2020,2,4), expiryDate:d(2030,2,3), photo:'', sharedWith:[li.id, sofia.id] },
     { id:'d4', ownerId:walter.id, familyId, type:'Cartão de Residência', country:'Portugal', name:'Título de Residência PT', issueDate:d(2023,9,10), expiryDate:d(2025,9,10), photo:'', sharedWith:[li.id] },
