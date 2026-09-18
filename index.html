@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MANADOC — Documentos da Família</title>
+<meta name="description" content="Gerencie documentos internacionais da sua família em um só lugar" />
+<link rel="preconnect" href="https://fonts.googleapis.com/">
+<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=Space+Grotesk:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="manadoc.css" />
+<link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><circle cx='32' cy='32' r='28' fill='none' stroke='%234b00fc' stroke-width='6'/><circle cx='32' cy='32' r='16' fill='none' stroke='%23ffa6fd' stroke-width='6'/><circle cx='32' cy='32' r='5' fill='%234b00fc'/></svg>" />
+</head>
+<body>
+
+<!-- Ambient glow background -->
+<div class="ambient">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="grain"></div>
+</div>
+
+<!-- AUTH SCREEN -->
+<section id="screen-auth" class="screen active">
+  <div class="auth-wrap">
+    <div class="auth-left">
+      <div class="brand-lockup">
+        <svg class="logo-svg logo-lg spin-slow" viewBox="0 0 120 120" aria-hidden="true">
+          <defs>
+            <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#4b00fc"/>
+              <stop offset="100%" stop-color="#8a5bff"/>
+            </linearGradient>
+            <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#ffa6fd"/>
+              <stop offset="100%" stop-color="#ff7de6"/>
+            </linearGradient>
+          </defs>
+          <circle cx="60" cy="60" r="52" fill="none" stroke="url(#g1)" stroke-width="10" stroke-linecap="round" stroke-dasharray="260 60"/>
+          <circle cx="60" cy="60" r="32" fill="none" stroke="url(#g2)" stroke-width="10" stroke-linecap="round" stroke-dasharray="150 50"/>
+          <circle cx="60" cy="60" r="10" fill="#4b00fc"/>
+        </svg>
+        <h1 class="wordmark">MANADOC</h1>
+        <p class="tagline">Vários documentos em vários países?<br/> <span class="accent">Zero documentos esquecidos.</span></p>
+      </div>
+      <ul class="features">
+        <li><span class="dot"></span> Passaportes, RG, CPF, NIF, cartões de residência</li>
+        <li><span class="dot"></span> Alertas antes de cada vencimento</li>
+        <li><span class="dot"></span> Compartilhamento seguro entre membros da família</li>
+      </ul>
+    </div>
+
+    <div class="auth-right">
+      <div class="card auth-card">
+        <div class="tabs">
+          <button class="tab active" data-tab="login">Entrar</button>
+          <button class="tab" data-tab="register">Criar conta</button>
+        </div>
+
+        <form id="form-login" class="tab-panel active" autocomplete="off">
+          <label>Email</label>
+          <input type="email" id="login-email" placeholder="voce@email.com" required />
+          <label>Senha</label>
+          <input type="password" id="login-pass" placeholder="••••••••" required />
+          <button class="btn-primary" type="submit">Entrar</button>
+          <div class="demo-users">
+            <span>Contas de teste:</span>
+            <button type="button" class="chip" data-fill="pai@manadoc.com|123456">Walter (pai)</button>
+            <button type="button" class="chip" data-fill="mae@manadoc.com|123456">Peng (mãe)</button>
+            <button type="button" class="chip" data-fill="filha@manadoc.com|123456">Sofia (filha)</button>
+          </div>
+        </form>
+
+        <form id="form-register" class="tab-panel" autocomplete="off">
+          <label>Nome</label>
+          <input type="text" id="reg-name" placeholder="Seu nome" required />
+          <label>Email</label>
+          <input type="email" id="reg-email" placeholder="voce@email.com" required />
+          <label>Senha</label>
+          <input type="password" id="reg-pass" placeholder="mínimo 6 caracteres" minlength="6" required />
+          <label>Código de família (opcional)</label>
+          <input type="text" id="reg-family" placeholder="deixe vazio para criar uma nova" />
+          <button class="btn-primary" type="submit">Criar conta</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DASHBOARD -->
+<section id="screen-app" class="screen">
+  <header class="topbar">
+    <div class="brand-mini">
+      <svg class="logo-svg logo-sm" viewBox="0 0 120 120" aria-hidden="true">
+        <circle cx="60" cy="60" r="52" fill="none" stroke="#4b00fc" stroke-width="10" stroke-linecap="round" stroke-dasharray="260 60"/>
+        <circle cx="60" cy="60" r="32" fill="none" stroke="#ffa6fd" stroke-width="10" stroke-linecap="round" stroke-dasharray="150 50"/>
+        <circle cx="60" cy="60" r="10" fill="#4b00fc"/>
+      </svg>
+      <span class="wordmark-sm">MANADOC</span>
+    </div>
+    <nav class="nav-tabs">
+      <button class="nav-tab active" data-view="docs">Documentos</button>
+      <button class="nav-tab" data-view="family">Família</button>
+    </nav>
+    <div class="user-menu">
+      <div class="user-avatar" id="user-avatar"></div>
+      <button class="btn-ghost" id="btn-logout">Sair</button>
+    </div>
+  </header>
+
+  <!-- Documents view -->
+  <main id="view-docs" class="view active">
+    <div class="view-header">
+      <div>
+        <h2 id="greeting">Olá</h2>
+        <p class="muted" id="summary-line">—</p>
+      </div>
+      <button class="btn-primary" id="btn-new-doc">+ Novo documento</button>
+    </div>
+
+    <div class="filters">
+      <button class="filter-chip active" data-filter="all">Todos</button>
+      <button class="filter-chip" data-filter="mine">Meus</button>
+      <button class="filter-chip" data-filter="shared">Compartilhados</button>
+      <button class="filter-chip" data-filter="expiring">Próx. do vencimento</button>
+      <div class="filter-spacer"></div>
+      <select id="filter-country" class="select">
+        <option value="all">Todos os países</option>
+        <option>Brasil</option>
+        <option>Portugal</option>
+        <option>China</option>
+      </select>
+    </div>
+
+    <div class="docs-grid" id="docs-grid"></div>
+    <div class="empty" id="docs-empty" style="display:none">
+      <p>Nenhum documento por aqui ainda.</p>
+    </div>
+  </main>
+
+  <!-- Family view -->
+  <main id="view-family" class="view">
+    <div class="view-header">
+      <div>
+        <h2>Sua família</h2>
+        <p class="muted">Convide membros com o código de família abaixo.</p>
+      </div>
+      <div class="family-code">
+        <span class="muted">Código:</span>
+        <code id="family-code">—</code>
+        <button class="btn-ghost" id="btn-copy-code">Copiar</button>
+      </div>
+    </div>
+    <div class="members-grid" id="members-grid"></div>
+  </main>
+</section>
+
+<!-- MODAL: New/Edit doc -->
+<div class="modal" id="modal-doc" hidden>
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-card">
+    <div class="modal-header">
+      <h3 id="modal-title">Novo documento</h3>
+      <button class="btn-ghost" data-close>✕</button>
+    </div>
+    <form id="form-doc" class="modal-body">
+      <input type="hidden" id="doc-id" />
+      <div class="row">
+        <div class="col">
+          <label>Tipo</label>
+          <select id="doc-type" required>
+            <option value="">Selecione…</option>
+            <option>CPF</option>
+            <option>RG</option>
+            <option>Passaporte</option>
+            <option>RNE</option>
+            <option>NIF</option>
+            <option>Cartão de Residência</option>
+            <option>Cartão de Saúde</option>
+            <option>ID China</option>
+            <option>Carteira de Motorista</option>
+            <option>Outro</option>
+          </select>
+        </div>
+        <div class="col">
+          <label>País</label>
+          <select id="doc-country" required>
+            <option value="">Selecione…</option>
+            <option>Brasil</option>
+            <option>Portugal</option>
+            <option>China</option>
+            <option>Outro</option>
+          </select>
+        </div>
+      </div>
+      <label>Nome / identificação</label>
+      <input type="text" id="doc-name" placeholder="Ex: Passaporte Walter 2029" required />
+      <div class="row">
+        <div class="col">
+          <label>Data de emissão / renovação</label>
+          <input type="date" id="doc-issue" />
+        </div>
+        <div class="col">
+          <label>Data de expiração</label>
+          <input type="date" id="doc-expiry" />
+        </div>
+      </div>
+      <label>Foto do documento</label>
+      <div class="file-drop" id="file-drop">
+        <input type="file" id="doc-photo" accept="image/*" hidden />
+        <div id="file-drop-empty">
+          <p><strong>Clique para escolher</strong> ou arraste uma imagem aqui</p>
+          <p class="muted small">A foto fica salva localmente (Supabase Storage no futuro)</p>
+        </div>
+        <img id="file-preview" alt="" />
+        <button type="button" class="btn-ghost small" id="btn-remove-photo" style="display:none">Remover foto</button>
+      </div>
+
+      <label>Compartilhar com membros da família</label>
+      <div class="share-list" id="share-list"></div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn-danger" id="btn-delete-doc" style="display:none">Deletar</button>
+        <div class="spacer"></div>
+        <button type="button" class="btn-ghost" data-close>Cancelar</button>
+        <button type="submit" class="btn-primary">Salvar</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- MODAL: View doc detail -->
+<div class="modal" id="modal-view" hidden>
+  <div class="modal-backdrop" data-close></div>
+  <div class="modal-card">
+    <div class="modal-header">
+      <h3 id="view-title">Documento</h3>
+      <button class="btn-ghost" data-close>✕</button>
+    </div>
+    <div class="modal-body" id="view-body"></div>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script src="manadoc.js"></script>
+</body>
+
+</html>
