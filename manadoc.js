@@ -18,29 +18,29 @@ function seed() {
   const now = Date.now()
   const familyId = 'fam_silva'
   const walter = { id: 'u_walter', name: 'walter Fernandes', email: 'pai@manadoc.com', password: '123456', familyId, createdAt: now }
-  const peng = { id: 'u_peng', name: 'Peng Ren', email: 'mae@manadoc.com', password: '123456', familyId, createdAt: now }
+  const li = { id: 'u_li', name: 'li Ren', email: 'mae@manadoc.com', password: '123456', familyId, createdAt: now }
   const sofia = { id: 'u_sofia', name: 'Sofia Ren Fernandes', email: 'filha@manadoc.com', password: '123456', familyId, createdAt: now }
-  const users = [walter, peng, sofia]
+  const users = [walter, li, sofia]
   const families = [{ id: familyId, name: 'Família Ren Fernandes', code: 'CHBRPT-2025', createdBy: walter.id }]
 
   const d = (y,m,day)=> new Date(y,m-1,day).toISOString().slice(0,10)
   const documents = [
     // walter
     { id:'d1', ownerId:walter.id, familyId, type:'CPF', country:'Brasil', name:'CPF walter', issueDate:d(2005,3,10), expiryDate:'', photo:'', sharedWith:[png.id, sofia.id] },
-    { id:'d2', ownerId:walter.id, familyId, type:'RG', country:'Brasil', name:'RG walter', issueDate:d(2018,6,15), expiryDate:'', photo:'', sharedWith:[peng.id] },
-    { id:'d3', ownerId:walter.id, familyId, type:'Passaporte', country:'Brasil', name:'Passaporte BR walter', issueDate:d(2020,2,4), expiryDate:d(2030,2,3), photo:'', sharedWith:[peng.id, sofia.id] },
-    { id:'d4', ownerId:walter.id, familyId, type:'Cartão de Residência', country:'Portugal', name:'Título de Residência PT', issueDate:d(2023,9,10), expiryDate:d(2025,9,10), photo:'', sharedWith:[peng.id] },
-    { id:'d5', ownerId:walter.id, familyId, type:'NIF', country:'Portugal', name:'NIF walter', issueDate:d(2023,8,1), expiryDate:'', photo:'', sharedWith:[peng.id] },
-    // Peng
-    { id:'d6', ownerId:peng.id, familyId, type:'RNE', country:'Brasil', name:'RNE Peng', issueDate:d(2019,4,20), expiryDate:d(2029,4,20), photo:'', sharedWith:[walter.id] },
-    { id:'d7', ownerId:peng.id, familyId, type:'CPF', country:'Brasil', name:'CPF Peng', issueDate:d(2019,5,1), expiryDate:'', photo:'', sharedWith:[walter.id] },
-    { id:'d8', ownerId:peng.id, familyId, type:'Passaporte', country:'China', name:'Passaporte CN Peng', issueDate:d(2019,1,15), expiryDate:d(2029,1,14), photo:'', sharedWith:[walter.id] },
-    { id:'d9', ownerId:peng.id, familyId, type:'ID China', country:'China', name:'ID China Peng', issueDate:d(2015,7,7), expiryDate:d(2035,7,7), photo:'', sharedWith:[] },
-    { id:'d10', ownerId:peng.id, familyId, type:'Cartão de Residência', country:'Portugal', name:'Título de Residência PT — Peng', issueDate:d(2023,9,10), expiryDate:d(2025,9,10), photo:'', sharedWith:[walter.id] },
+    { id:'d2', ownerId:walter.id, familyId, type:'RG', country:'Brasil', name:'RG walter', issueDate:d(2018,6,15), expiryDate:'', photo:'', sharedWith:[li.id] },
+    { id:'d3', ownerId:walter.id, familyId, type:'Passaporte', country:'Brasil', name:'Passaporte BR walter', issueDate:d(2020,2,4), expiryDate:d(2030,2,3), photo:'', sharedWith:[li.id, sofia.id] },
+    { id:'d4', ownerId:walter.id, familyId, type:'Cartão de Residência', country:'Portugal', name:'Título de Residência PT', issueDate:d(2023,9,10), expiryDate:d(2025,9,10), photo:'', sharedWith:[li.id] },
+    { id:'d5', ownerId:walter.id, familyId, type:'NIF', country:'Portugal', name:'NIF walter', issueDate:d(2023,8,1), expiryDate:'', photo:'', sharedWith:[li.id] },
+    // li
+    { id:'d6', ownerId:li.id, familyId, type:'RNE', country:'Brasil', name:'RNE li', issueDate:d(2019,4,20), expiryDate:d(2029,4,20), photo:'', sharedWith:[walter.id] },
+    { id:'d7', ownerId:li.id, familyId, type:'CPF', country:'Brasil', name:'CPF li', issueDate:d(2019,5,1), expiryDate:'', photo:'', sharedWith:[walter.id] },
+    { id:'d8', ownerId:li.id, familyId, type:'Passaporte', country:'China', name:'Passaporte CN li', issueDate:d(2019,1,15), expiryDate:d(2029,1,14), photo:'', sharedWith:[walter.id] },
+    { id:'d9', ownerId:li.id, familyId, type:'ID China', country:'China', name:'ID China li', issueDate:d(2015,7,7), expiryDate:d(2035,7,7), photo:'', sharedWith:[] },
+    { id:'d10', ownerId:li.id, familyId, type:'Cartão de Residência', country:'Portugal', name:'Título de Residência PT — li', issueDate:d(2023,9,10), expiryDate:d(2025,9,10), photo:'', sharedWith:[walter.id] },
     // Sofia
-    { id:'d11', ownerId:sofia.id, familyId, type:'CPF', country:'Brasil', name:'CPF Sofia', issueDate:d(2020,3,1), expiryDate:'', photo:'', sharedWith:[walter.id, peng.id] },
-    { id:'d12', ownerId:sofia.id, familyId, type:'Passaporte', country:'Brasil', name:'Passaporte BR Sofia', issueDate:d(2022,6,10), expiryDate:d(2027,6,9), photo:'', sharedWith:[walter.id, peng.id] },
-    { id:'d13', ownerId:sofia.id, familyId, type:'Cartão de Residência', country:'Portugal', name:'Título de Residência PT — Sofia', issueDate:d(2023,9,10), expiryDate:d(2025,9,10), photo:'', sharedWith:[walter.id, peng.id] },
+    { id:'d11', ownerId:sofia.id, familyId, type:'CPF', country:'Brasil', name:'CPF Sofia', issueDate:d(2020,3,1), expiryDate:'', photo:'', sharedWith:[walter.id, li.id] },
+    { id:'d12', ownerId:sofia.id, familyId, type:'Passaporte', country:'Brasil', name:'Passaporte BR Sofia', issueDate:d(2022,6,10), expiryDate:d(2027,6,9), photo:'', sharedWith:[walter.id, li.id] },
+    { id:'d13', ownerId:sofia.id, familyId, type:'Cartão de Residência', country:'Portugal', name:'Título de Residência PT — Sofia', issueDate:d(2023,9,10), expiryDate:d(2025,9,10), photo:'', sharedWith:[walter.id, li.id] },
   ]
   return { users, families, documents, currentUserId: null }
 }
